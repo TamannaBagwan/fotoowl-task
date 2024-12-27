@@ -1,2 +1,2 @@
-# fotowol-task
+# fotoowl task
 react chat app
