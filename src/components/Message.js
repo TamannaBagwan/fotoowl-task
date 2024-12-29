@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import DoneIcon from "@mui/icons-material/Done";
@@ -9,7 +8,6 @@ const Message = ({ text, isSent, contactName }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        marginBottom: "10px",
          minWidth:"100px"
       }}
     >
@@ -22,13 +20,15 @@ const Message = ({ text, isSent, contactName }) => {
          
         }}
       >
-        <Typography variant="body2" sx={{ fontWeight: "bold" }}>
+        <Typography variant="body2" sx={{ fontWeight: "bold", fontSize:{xs:'15px',sm:'18px',md:"15px"}
+ }}>
           {isSent ? "You" : contactName }
         </Typography>
         <Typography
           sx={{
             marginBottom: "4px",
             wordBreak: "break-word",
+            fontSize:{xs:'15px',sm:'22px',md:"15px"}
           }}
         >
           {text}
@@ -44,9 +44,9 @@ const Message = ({ text, isSent, contactName }) => {
           >
             <DoneIcon
               sx={{
-                fontSize: "22px",
+                fontSize:'20px',
                 color: "#888",
-                marginLeft: "4px", 
+                marginLeft: "4px",
               }}
             />
           </Box>

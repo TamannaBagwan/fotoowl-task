@@ -37,13 +37,11 @@ const ChatWindow = () => {
     setSelectedContact(null); 
   };
 
-  
   useEffect(() => {
     const chatWindow = document.getElementById("chat-window");
     const lastMessage = chatWindow?.lastElementChild;
     lastMessage?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  
 
   useEffect(() => {
     if (selectedContact && !contacts.find((contact) => contact.id === selectedContact.id)) {
@@ -66,14 +64,15 @@ const ChatWindow = () => {
             sx={{
               backgroundColor: "#075e54",
               color: "white",
-              padding: 2,
+              padding: { xs: 2, sm: 2 },
               display: "flex",
               alignItems: "center",
               borderRadius: "8px 8px 0 0",
+              flexWrap: { xs: "wrap", sm: "nowrap" },
             }}
           >
             <IconButton color="inherit" onClick={handleBack}>
-              <ArrowBackIcon />
+              <ArrowBackIcon sx={{fontSize:{xs:'25px',sm:'35px',md:"27px"},marginRight:{xs:'5px',sm:'20px',md:"18px"}}} />
             </IconButton>
             <Avatar
               sx={{
@@ -81,27 +80,27 @@ const ChatWindow = () => {
                 backgroundColor: "#fff",
                 color: "#075e54",
                 fontWeight: "bold",
+                fontSize:{xs:'20px',sm:'25px',md:"20px"},
+                display: 'flex',
+                padding:'4px'
               }}
             >
               {selectedContact.name.charAt(0)}
             </Avatar>
-
-            <Typography variant="h6" sx={{ flex: 1 }}>
+            <Typography variant="h6" sx={{ flex: 1, fontSize: { xs: "18px", sm: '26px' ,md:"20px"}}}>
               {selectedContact.name}
             </Typography>
-
-            <IconButton color="inherit">
-              <CallIcon />
-            </IconButton>
-
-            <IconButton color="inherit">
-              <VideocamIcon />
-            </IconButton>
-
-            <IconButton color="inherit" onClick={handleClick}>
-              <MoreVertIcon />
-            </IconButton>
-
+            <Box sx={{ display: "flex", gap: { xs: 1, sm: 2 } }}>
+              <IconButton color="inherit">
+                <CallIcon sx={{fontSize:{xs:'22px',sm:'30px',md:"25px"}}}/>
+              </IconButton>
+              <IconButton color="inherit">
+                <VideocamIcon sx={{fontSize:{xs:'22px',sm:'30px',md:"25px"}}} />
+              </IconButton>
+              <IconButton color="inherit" onClick={handleClick}>
+                <MoreVertIcon sx={{fontSize:{xs:'22px',sm:'30px',md:"25px"}}} />
+              </IconButton>
+            </Box>
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
@@ -113,22 +112,13 @@ const ChatWindow = () => {
                 },
               }}
             >
-              <MenuItem
-                onClick={handleClose}
-                sx={{ fontSize: "1rem", color: "#075e54" }}
-              >
+              <MenuItem onClick={handleClose} sx={{ fontSize: {xs:'14px',sm:'20px',md:'16px'}, color: "#075e54" }}>
                 Profile
               </MenuItem>
-              <MenuItem
-                onClick={handleClose}
-                sx={{ fontSize: "1rem", color: "#075e54" }}
-              >
+              <MenuItem onClick={handleClose} sx={{ fontSize: {xs:'14px',sm:'20px',md:'16px'}, color: "#075e54" }}>
                 Settings
               </MenuItem>
-              <MenuItem
-                onClick={handleClose}
-                sx={{ fontSize: "1rem", color: "#075e54" }}
-              >
+              <MenuItem onClick={handleClose} sx={{ fontSize: {xs:'14px',sm:'20px',md:'16px'}, color: "#075e54" }}>
                 Log out
               </MenuItem>
             </Menu>
@@ -138,7 +128,7 @@ const ChatWindow = () => {
             sx={{
               flex: 1,
               overflowY: "scroll",
-              padding: 2,
+              padding: { xs: 1, sm: 2 },
               borderBottom: 1,
               borderColor: "#ddd",
               backgroundColor: "#f7f7eb",
@@ -151,16 +141,17 @@ const ChatWindow = () => {
               {messages
                 .filter((msg) => msg.contactId === selectedContact.id)
                 .map((msg, index) => (
-                  <ListItem key={index} disableGutters sx={{  justifyContent: msg.isSender ? "flex-end" : "flex-start",}}>
-                    <Message
-                      text={msg.text}
-                      isSent={msg.isSender}
-                      contactName={selectedContact.name}
-                    />
+                  <ListItem
+                    key={index}
+                    disableGutters
+                    sx={{
+                      justifyContent: msg.isSender ? "flex-end" : "flex-start",
+                    }}
+                  >
+                    <Message text={msg.text} isSent={msg.isSender} contactName={selectedContact.name} />
                   </ListItem>
                 ))}
             </List>
-           
           </Box>
 
           <MessageInput />
@@ -200,6 +191,7 @@ const ChatWindow = () => {
       )}
     </Box>
   );
+
 };
 
 export default ChatWindow;

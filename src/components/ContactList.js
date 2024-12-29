@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import {
   List,
   ListItem,
@@ -35,7 +35,7 @@ const ContactList = () => {
   const [editingContactId, setEditingContactId] = useState(null);
   const [editedName, setEditedName] = useState("");
   const [editedNumber, setEditedNumber] = useState("");
-
+ 
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -62,6 +62,7 @@ const ContactList = () => {
         flexDirection: "column",
       }}
     >
+      
       <Box
         sx={{
           padding: 2,
@@ -76,7 +77,7 @@ const ContactList = () => {
           <SearchIcon />
         </IconButton>
         <InputBase
-          sx={{ ml: 1, flex: 1 }}
+          sx={{ ml: 1, flex: 1, fontSize: { xs: "14px", sm: "16px" } }}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search or start a new chat"
@@ -93,14 +94,13 @@ const ContactList = () => {
                 onClick={() => setSelectedContact(contact)}
                 sx={{
                   paddingY: 1,
-                  cursor: "pointer",
                   paddingX: 2,
+                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
-                  "&:hover": {
-                    backgroundColor: "#e1e1e1",
-                  },
+                  "&:hover": { backgroundColor: "#d6d6d6" },
                 }}
+              
               >
                 <Avatar
                   sx={{
@@ -192,6 +192,7 @@ const ContactList = () => {
               padding: 2,
               textAlign: "center",
               color: "#aaa",
+              fontSize: { xs: "14px", sm: "16px" },
             }}
           >
             No contacts found
@@ -215,17 +216,20 @@ const ContactList = () => {
           sx={{
             mb: 1,
             borderColor: "#ddd",
+            fontSize: { xs: "14px", sm: "16px" },
             padding: 1,
           }}
         />
         <InputBase
           value={newContactNumber}
+          type="number"
           onChange={(e) => setNewContactNumber(e.target.value)}
           placeholder="Enter contact number"
           fullWidth
           sx={{
             mb: 1,
             borderColor: "#ddd",
+            fontSize: { xs: "14px", sm: "16px" },
             padding: 1,
           }}
         />
@@ -244,6 +248,8 @@ const ContactList = () => {
             color: "#fff",
             "&:hover": { backgroundColor: "#056c48" },
             textTransform: "none",
+            fontSize: { xs: "14px", sm: "16px" },
+            padding: { xs: "6px", sm: "10px" },
           }}
           startIcon={<PersonAdd />}
           fullWidth

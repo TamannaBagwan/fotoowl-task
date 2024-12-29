@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import { TextField, IconButton, Box } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
@@ -52,9 +50,6 @@ const MessageInput = () => {
             pt: 1,
             pb: 1,
           },
-        }}
-        inputProps={{
-          "aria-label": "Type your message",
         }}
       />
 

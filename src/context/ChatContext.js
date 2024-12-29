@@ -29,7 +29,7 @@ export const ChatProvider = ({ children }) => {
       )
     );
   };
-  // Delete a contact
+
   const deleteContact = (id) => {
     setContacts((prevContacts) =>
       prevContacts.filter((contact) => contact.id !== id)
